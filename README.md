@@ -1,4 +1,4 @@
-# Lock-Free Concurrency & Custom Allocators
+# Memory-Lab
 
 A C++20 systems programming project that combines a custom arena allocator with a lock-free Single-Producer Single-Consumer (SPSC) queue to process simulated packet metadata. A basic pipeline using `new/delete` and a mutex-backed queue provides a comparison.
 
@@ -20,13 +20,13 @@ The basic pipeline generates the same packets and uses the same queue capacity a
 
 Requirements: Windows on x86/x64, Visual Studio with the **Desktop development with C++** workload, the **MSVC v145** toolset used by the project, and a Windows SDK. The project is configured for C++20.
 
-1. Open [Allocators-WEC-Systems.slnx](Allocators-WEC-Systems.slnx) in Visual Studio.
+1. Open [Memory-Lab.slnx](Memory-Lab.slnx) in Visual Studio.
 2. Select **Release** and **x64** for performance measurements.
 3. Build the solution and run without debugging using **Ctrl+F5**.
 
 The program runs arena and SPSC tests first. If they pass, it runs the arena allocator measurements, the arena/SPSC pipeline, and the basic pipeline. It returns 0 on success and 1 if a test, validation, or measurement fails.
 
-Default pipeline settings are in [Pipeline.h](Allocators-WEC-Systems/include/Pipeline.h):
+Default pipeline settings are in [Pipeline.h](Memory-Lab/include/Pipeline.h):
 
 | Setting | Value |
 | --- | --- |
@@ -50,22 +50,22 @@ Both runs processed 8,388,608 messages, passed validation, and produced the expe
 
 Timing starts after both workers reach a start gate and ends after the producer observes the final completion acknowledgement, including the custom pipeline's final arena reset. Setup, thread creation, joins, final validation, and printing are excluded. Message allocation, initialization, queue operations, processing, deletion or recycling, and waiting are included.
 
-These are individual runs, not repeated-run statistics. Results depend on the machine and workload, measure the combined allocator and queue designs, and do not establish individual packet latency. See [pipeline measurements](Allocators-WEC-Systems/docs/pipeline-benchmarks.md) for screenshots and details.
+These are individual runs, not repeated-run statistics. Results depend on the machine and workload, measure the combined allocator and queue designs, and do not establish individual packet latency. See [pipeline measurements](Memory-Lab/docs/pipeline-benchmarks.md) for screenshots and details.
 
 ## Documentation
 
-- [Phase 1: Arena allocator](Allocators-WEC-Systems/docs/phase-01.md)
-- [Phase 2: SPSC queue](Allocators-WEC-Systems/docs/phase-02.md)
-- [Phase 3: Integrated pipeline](Allocators-WEC-Systems/docs/phase-03.md)
-- [Arena allocator measurements](Allocators-WEC-Systems/docs/arena-benchmarks.md)
-- [Pipeline comparison](Allocators-WEC-Systems/docs/pipeline-benchmarks.md)
+- [Phase 1: Arena allocator](Memory-Lab/docs/phase-01.md)
+- [Phase 2: SPSC queue](Memory-Lab/docs/phase-02.md)
+- [Phase 3: Integrated pipeline](Memory-Lab/docs/phase-03.md)
+- [Arena allocator measurements](Memory-Lab/docs/arena-benchmarks.md)
+- [Pipeline comparison](Memory-Lab/docs/pipeline-benchmarks.md)
 
 ## Project Layout
 
 ```text
-Allocators-WEC-Systems.slnx
+Memory-Lab.slnx
 README.md
-Allocators-WEC-Systems/
+Memory-Lab/
     include/       Arena, queue, pipeline declarations, and basic pipeline
     src/           Arena and pipeline implementations; program entry point
     tests/         Arena and SPSC test suites

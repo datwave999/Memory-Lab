@@ -22,7 +22,7 @@
     <VCProjectVersion>18.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{1cb93d1d-c279-4f83-9e66-0906c4213ffb}</ProjectGuid>
-    <RootNamespace>AllocatorsWECSystems</RootNamespace>
+    <RootNamespace>MemoryLab</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
